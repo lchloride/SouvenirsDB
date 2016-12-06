@@ -18,30 +18,32 @@ USE `souvenirs`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user_belong_group`
+-- Table structure for table `picture`
 --
 
-DROP TABLE IF EXISTS `user_belong_group`;
+DROP TABLE IF EXISTS `picture`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_belong_group` (
+CREATE TABLE `picture` (
   `user_id` varchar(9) NOT NULL,
-  `group_id` varchar(9) NOT NULL,
-  PRIMARY KEY (`user_id`,`group_id`),
-  KEY `group_id_idx` (`group_id`),
-  CONSTRAINT `group_id` FOREIGN KEY (`group_id`) REFERENCES `group` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `album_name` varchar(50) NOT NULL,
+  `filename` varchar(55) NOT NULL,
+  `format` varchar(5) NOT NULL COMMENT 'filename extension',
+  `description` varchar(200) DEFAULT '',
+  `upload_timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_id`,`album_name`,`filename`),
+  CONSTRAINT `album_name_P2A` FOREIGN KEY (`user_id`, `album_name`) REFERENCES `album` (`user_id`, `album_name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_belong_group`
+-- Dumping data for table `picture`
 --
 
-LOCK TABLES `user_belong_group` WRITE;
-/*!40000 ALTER TABLE `user_belong_group` DISABLE KEYS */;
-INSERT INTO `user_belong_group` VALUES ('#00000001','000000001'),('#00000002','000000002'),('#00000003','000000002'),('#00000001','000000003'),('#00000002','000000003'),('#00000003','000000003');
-/*!40000 ALTER TABLE `user_belong_group` ENABLE KEYS */;
+LOCK TABLES `picture` WRITE;
+/*!40000 ALTER TABLE `picture` DISABLE KEYS */;
+INSERT INTO `picture` VALUES ('#00000001','daily life','cover.jpg','jpg','','2016-12-05 16:42:17'),('#00000001','daily life','party.jpg','jpg','Nice party','2016-12-05 16:36:08'),('#00000001','daily life','tour.jpg','jpg','Tour to beach','2016-12-05 16:35:17'),('#00000002','user','avatar.jpg','jpg','This is your profile picture.','2016-12-05 15:57:02'),('#00000003','study','oso.jpg','jpg','','2016-12-05 16:37:57'),('#00000003','study','website.jpg','jpg','Souvenirs Website','2016-12-05 16:38:38'),('#00000003','tour','golden gate bridge.jpg','jpg','','2016-12-05 16:39:06'),('#00000003','tour','night sakura.jpg','jpg','Sakara blooms at Sumidagawa, Tokyo','2016-12-05 16:41:12'),('#00000003','user','logo.png','png','This is your profile picture.','2016-12-05 15:57:47');
+/*!40000 ALTER TABLE `picture` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-06  9:21:38
+-- Dump completed on 2016-12-06  9:21:37

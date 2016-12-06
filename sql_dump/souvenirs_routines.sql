@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `souvenirs`;
 -- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
 --
 -- Host: 127.0.0.1    Database: souvenirs
@@ -14,6 +16,10 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Dumping events for database 'souvenirs'
+--
 
 --
 -- Dumping routines for database 'souvenirs'
@@ -131,4 +137,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-05 17:06:08
+-- Dump completed on 2016-12-06  9:21:38
