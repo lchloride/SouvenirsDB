@@ -39,7 +39,9 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('#00000001','Alice','123456','\\r\r\r\res\\default_avatar.png'),('#00000002','Bob','000000','\\#00000002\\user\\avatar.jpg'),('#00000003','小明','111111','\\#00000003\\user\\logo.png');
+INSERT INTO `user` VALUES ('#00000001','Alice','123456','\\r\r\r\res\\default_avatar.png');
+INSERT INTO `user` VALUES ('#00000002','Bob','000000','\\#00000002\\user\\avatar.jpg');
+INSERT INTO `user` VALUES ('#00000003','小明','111111','\\#00000003\\user\\logo.png');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-06  9:21:37
+-- Dump completed on 2016-12-09 16:04:46

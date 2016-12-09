@@ -40,7 +40,7 @@ declare x int;
 declare id varchar(9);
 select int_val into x from info where key_id = "groupid";
 set id = LPAD(x+1, 9, '0');
-insert into souvenirs.`group` values (id, gn, intro, CONCAT('\\group\\', id, '_', ac));
+insert into souvenirs.`group` values (id, gn, intro, concat('Shared_Album_from_', gn), CONCAT('\\group\\', id, '_', ac));
 update info set int_val = (x+1) where key_id = "groupid";
 END ;;
 DELIMITER ;
@@ -64,7 +64,7 @@ declare x int;
 declare id varchar(9);
 select int_val into x from info where key_id = "groupid";
 set id = LPAD(x+1, 9, '0');
-insert into souvenirs.`group`(group_id, group_name, intro) values (id, gn, intro);
+insert into souvenirs.`group`(group_id, group_name, intro, album_name) values (id, gn, intro, concat('Shared_Album_from_', gn));
 update info set int_val = (x+1) where key_id = "groupid";
 END ;;
 DELIMITER ;
@@ -137,4 +137,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-06  9:21:38
+-- Dump completed on 2016-12-09 16:04:48

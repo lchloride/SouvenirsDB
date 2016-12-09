@@ -40,7 +40,12 @@ CREATE TABLE `album` (
 
 LOCK TABLES `album` WRITE;
 /*!40000 ALTER TABLE `album` DISABLE KEYS */;
-INSERT INTO `album` VALUES ('#00000001','daily life','\\#00000001\\daily life\\cover.jpg','Pictures in daily life'),('#00000001','user','\\res\\default_cover.png','This is a default album.'),('#00000002','user','\\#00000002\\user\\avatar.jpg','This is a default album.'),('#00000003','study','\\#00000003\\study\\oso.jpg',''),('#00000003','tour','\\#00000003\\tour\\golden gate bridge.jpg','nice scenary'),('#00000003','user','\\#00000003\\user\\logo.png','This is a default album.');
+INSERT INTO `album` VALUES ('#00000001','daily life','\\#00000001\\daily life\\cover.jpg','Pictures in daily life');
+INSERT INTO `album` VALUES ('#00000001','user','\\res\\default_cover.png','This is a default album.');
+INSERT INTO `album` VALUES ('#00000002','user','\\#00000002\\user\\avatar.jpg','This is a default album.');
+INSERT INTO `album` VALUES ('#00000003','study','\\#00000003\\study\\oso.jpg','');
+INSERT INTO `album` VALUES ('#00000003','tour','\\#00000003\\tour\\golden gate bridge.jpg','nice scenary');
+INSERT INTO `album` VALUES ('#00000003','user','\\#00000003\\user\\logo.png','This is a default album.');
 /*!40000 ALTER TABLE `album` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-06  9:21:37
+-- Dump completed on 2016-12-09 16:04:46
