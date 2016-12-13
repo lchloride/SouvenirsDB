@@ -113,7 +113,11 @@ DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET t_error=1;
 
 	
 START TRANSACTION;
-
+select count(*) into x from user where username=un;
+if x > 0 then
+	set t_error = 1;
+    rollback;
+else
 	SELECT int_val iNTO x FROM info WHERE key_id = 'userid';
     set id = CONCAT('#', LPAD(x+1, 8, '0'));
 	set filename = CONCAT('\\',id, '\\user\\', ava_name);
@@ -128,7 +132,8 @@ START TRANSACTION;
 	ELSE  
 		COMMIT;  
 	END IF; 
-    select t_error; 
+END if;
+select t_error; 
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -153,16 +158,22 @@ DECLARE t_error INTEGER DEFAULT 0;
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET t_error=1;  
 
 START TRANSACTION;
-select int_val into x from info where key_id = "userid";
-set id = CONCAT('#', LPAD(x+1, 8, '0'));
-insert into user(user_id, username, password) values (id, un, pwd);
-update info set int_val = (x+1) where key_id = "userid";
-insert into album values(id, 'user', '\\res\\default_cover.png', 'This is a default album');
-IF t_error = 1 THEN  
-	ROLLBACK;  
-ELSE  
-	COMMIT;  
-END IF; 
+select count(*) into x from user where username=un;
+if x > 0 then
+	set t_error = 1;
+    rollback;
+else
+	select int_val into x from info where key_id = "userid";
+	set id = CONCAT('#', LPAD(x+1, 8, '0'));
+	insert into user(user_id, username, password) values (id, un, pwd);
+	update info set int_val = (x+1) where key_id = "userid";
+	insert into album values(id, 'user', '\\res\\default_cover.png', 'This is a default album');
+	IF t_error = 1 THEN  
+		ROLLBACK;  
+	ELSE  
+		COMMIT;  
+	END IF; 
+END if;
 select t_error; 
 END ;;
 DELIMITER ;
@@ -180,4 +191,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-09 23:16:05
+-- Dump completed on 2016-12-13 15:13:40
