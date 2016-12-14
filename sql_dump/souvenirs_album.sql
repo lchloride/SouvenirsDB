@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `album`;
 CREATE TABLE `album` (
   `user_id` varchar(9) NOT NULL,
   `album_name` varchar(50) NOT NULL,
-  `album_cover` varchar(260) NOT NULL DEFAULT '\\res\\default_cover.png',
+  `album_cover` varchar(260) NOT NULL DEFAULT '\\\\res\\\\default_cover.png',
   `intro` varchar(200) DEFAULT '',
   PRIMARY KEY (`user_id`,`album_name`),
   CONSTRAINT `user_id_A2U` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -40,12 +40,12 @@ CREATE TABLE `album` (
 
 LOCK TABLES `album` WRITE;
 /*!40000 ALTER TABLE `album` DISABLE KEYS */;
-INSERT INTO `album` VALUES ('#00000001','daily life','\\#00000001\\daily life\\cover.jpg','Pictures in daily life');
-INSERT INTO `album` VALUES ('#00000001','user','\\res\\default_cover.png','This is a default album.');
-INSERT INTO `album` VALUES ('#00000002','user','\\#00000002\\user\\avatar.jpg','This is a default album.');
-INSERT INTO `album` VALUES ('#00000003','study','\\#00000003\\study\\oso.jpg','');
-INSERT INTO `album` VALUES ('#00000003','tour','\\#00000003\\tour\\golden gate bridge.jpg','nice scenary');
-INSERT INTO `album` VALUES ('#00000003','user','\\#00000003\\user\\logo.png','This is a default album.');
+INSERT INTO `album` VALUES ('#00000001','daily life','\\\\#00000001\\\\daily life\\\\cover.jpg','Pictures in daily life');
+INSERT INTO `album` VALUES ('#00000001','user','\\\\res\\\\default_cover.png','This is a default album.');
+INSERT INTO `album` VALUES ('#00000002','user','\\\\#00000002\\\\user\\\\avatar.jpg','This is a default album.');
+INSERT INTO `album` VALUES ('#00000003','study','\\\\#00000003\\\\study\\\\oso.jpg','');
+INSERT INTO `album` VALUES ('#00000003','tour','\\\\#00000003\\\\tour\\\\golden gate bridge.jpg','nice scenary');
+INSERT INTO `album` VALUES ('#00000003','user','\\\\#00000003\\\\user\\\\logo.png','This is a default album.');
 /*!40000 ALTER TABLE `album` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-13 15:13:38
+-- Dump completed on 2016-12-14 23:19:02

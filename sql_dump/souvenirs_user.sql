@@ -28,7 +28,7 @@ CREATE TABLE `user` (
   `user_id` varchar(9) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `avatar` varchar(260) NOT NULL DEFAULT '\\r\r\r\res\\default_avatar.png' COMMENT 'length max is 260 since in windows os, the max path length is 260.',
+  `avatar` varchar(260) NOT NULL DEFAULT '\\\\res\\\\default_avatar.png' COMMENT 'length max is 260 since in windows os, the max path length is 260.''\\\\\\\\''(\\*4) is the file seperator of windows',
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -39,9 +39,9 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('#00000001','Alice','123456','\\r\r\r\res\\default_avatar.png');
-INSERT INTO `user` VALUES ('#00000002','Bob','000000','\\#00000002\\user\\avatar.jpg');
-INSERT INTO `user` VALUES ('#00000003','小明','111111','\\#00000003\\user\\logo.png');
+INSERT INTO `user` VALUES ('#00000001','Alice','123456','\\\\res\\\\default_avatar.png');
+INSERT INTO `user` VALUES ('#00000002','Bob','000000','\\\\#00000002\\\\user\\\\avatar.jpg');
+INSERT INTO `user` VALUES ('#00000003','Xiaoming','111111','\\\\#00000003\\\\user\\\\logo.png');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -74,4 +74,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-13 15:13:39
+-- Dump completed on 2016-12-14 23:19:03
