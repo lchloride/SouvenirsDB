@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
@@ -25,13 +25,14 @@ DROP TABLE IF EXISTS `group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `group` (
-  `group_id` varchar(9) NOT NULL,
-  `group_name` varchar(50) NOT NULL,
-  `intro` varchar(200) DEFAULT '',
-  `shared_album_name` varchar(70) NOT NULL DEFAULT 'default_group_album_name',
-  `album_cover` varchar(260) NOT NULL DEFAULT '\\\\res\\\\default_cover.png',
+  `group_id` varchar(9) COLLATE utf8_bin NOT NULL,
+  `group_name` varchar(50) COLLATE utf8_bin NOT NULL,
+  `intro` varchar(200) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `shared_album_name` varchar(70) CHARACTER SET utf8 NOT NULL COMMENT '''Shared_Album_from_''+group_name, max 68 characters',
+  `album_cover` varchar(260) COLLATE utf8_bin NOT NULL DEFAULT '\\\\res\\\\default_cover.png',
+  `create_timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`group_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,11 +41,12 @@ CREATE TABLE `group` (
 
 LOCK TABLES `group` WRITE;
 /*!40000 ALTER TABLE `group` DISABLE KEYS */;
-INSERT INTO `group` VALUES ('000000001','Alice\'s Group','This is Alice\'s Group','Shared_Album_from_Alice\'s Group','\\\\res\\\\default_cover.png');
-INSERT INTO `group` VALUES ('000000002','Classmate','2016 computer major','Shared_Album_from_Classmate','\\\\group\\\\000000002_cover.jpg');
-INSERT INTO `group` VALUES ('000000003','Sample','Sample Group','Shared_Album_from_Sample','\\\\res\\\\default_cover.png');
+INSERT INTO `group` VALUES ('000000001','Alice\'s Group','This is Alice\'s Group','Shared_Album_from_Alice\'s Group','\\\\res\\\\default_cover.png','2016-12-15 10:10:12');
+INSERT INTO `group` VALUES ('000000002','Classmate','2016 computer major','Shared_Album_from_Classmate','\\\\group\\\\000000002_cover.jpg','2016-12-15 10:10:12');
+INSERT INTO `group` VALUES ('000000003','Sample','Sample Group','Shared_Album_from_Sample','\\\\res\\\\default_cover.png','2016-12-15 10:10:12');
 /*!40000 ALTER TABLE `group` ENABLE KEYS */;
 UNLOCK TABLES;
+ALTER DATABASE `souvenirs` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -65,6 +67,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `souvenirs` CHARACTER SET utf8 COLLATE utf8_bin ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -75,4 +78,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-14 23:19:02
+-- Dump completed on 2016-12-15 10:51:41

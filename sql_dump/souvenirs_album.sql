@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
@@ -25,13 +25,14 @@ DROP TABLE IF EXISTS `album`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `album` (
-  `user_id` varchar(9) NOT NULL,
-  `album_name` varchar(50) NOT NULL,
-  `album_cover` varchar(260) NOT NULL DEFAULT '\\\\res\\\\default_cover.png',
-  `intro` varchar(200) DEFAULT '',
+  `user_id` varchar(9) COLLATE utf8_bin NOT NULL,
+  `album_name` varchar(60) COLLATE utf8_bin NOT NULL,
+  `album_cover` varchar(260) COLLATE utf8_bin NOT NULL DEFAULT '\\\\res\\\\default_cover.png',
+  `intro` varchar(200) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `create_timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`,`album_name`),
-  CONSTRAINT `user_id_A2U` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `A_USERID` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,12 +41,12 @@ CREATE TABLE `album` (
 
 LOCK TABLES `album` WRITE;
 /*!40000 ALTER TABLE `album` DISABLE KEYS */;
-INSERT INTO `album` VALUES ('#00000001','daily life','\\\\#00000001\\\\daily life\\\\cover.jpg','Pictures in daily life');
-INSERT INTO `album` VALUES ('#00000001','user','\\\\res\\\\default_cover.png','This is a default album.');
-INSERT INTO `album` VALUES ('#00000002','user','\\\\#00000002\\\\user\\\\avatar.jpg','This is a default album.');
-INSERT INTO `album` VALUES ('#00000003','study','\\\\#00000003\\\\study\\\\oso.jpg','');
-INSERT INTO `album` VALUES ('#00000003','tour','\\\\#00000003\\\\tour\\\\golden gate bridge.jpg','nice scenary');
-INSERT INTO `album` VALUES ('#00000003','user','\\\\#00000003\\\\user\\\\logo.png','This is a default album.');
+INSERT INTO `album` VALUES ('#00000001','daily life','\\\\#00000001\\\\daily life\\\\cover.jpg','Pictures in daily life','2016-12-15 09:58:06');
+INSERT INTO `album` VALUES ('#00000001','user','\\\\res\\\\default_cover.png','This is a default album.','2016-12-15 09:58:06');
+INSERT INTO `album` VALUES ('#00000002','user','\\\\#00000002\\\\user\\\\avatar.jpg','This is a default album.','2016-12-15 09:58:06');
+INSERT INTO `album` VALUES ('#00000003','study','\\\\#00000003\\\\study\\\\oso.jpg','','2016-12-15 09:58:06');
+INSERT INTO `album` VALUES ('#00000003','tour','\\\\#00000003\\\\tour\\\\golden gate bridge.jpg','nice scenary','2016-12-15 09:58:06');
+INSERT INTO `album` VALUES ('#00000003','user','\\\\#00000003\\\\user\\\\logo.png','This is a default album.','2016-12-15 09:58:06');
 /*!40000 ALTER TABLE `album` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-14 23:19:02
+-- Dump completed on 2016-12-15 10:51:40

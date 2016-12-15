@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
@@ -25,15 +25,15 @@ DROP TABLE IF EXISTS `salbum_own_picture`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `salbum_own_picture` (
-  `group_id` varchar(9) NOT NULL,
-  `user_id` varchar(9) NOT NULL,
-  `album_name` varchar(50) NOT NULL,
-  `filename` varchar(55) NOT NULL,
+  `group_id` varchar(9) COLLATE utf8_bin NOT NULL,
+  `user_id` varchar(9) COLLATE utf8_bin NOT NULL,
+  `album_name` varchar(60) COLLATE utf8_bin NOT NULL,
+  `filename` varchar(70) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`group_id`,`user_id`,`album_name`,`filename`),
-  KEY `SAOP2P_idx` (`user_id`,`album_name`,`filename`),
-  CONSTRAINT `SAOP2G` FOREIGN KEY (`group_id`) REFERENCES `group` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `SAOP2P` FOREIGN KEY (`user_id`, `album_name`, `filename`) REFERENCES `picture` (`user_id`, `album_name`, `filename`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `SOP_PICTURE_idx` (`user_id`,`album_name`,`filename`),
+  CONSTRAINT `SOP_GROUP` FOREIGN KEY (`group_id`) REFERENCES `group` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `SOP_PICTURE` FOREIGN KEY (`user_id`, `album_name`, `filename`) REFERENCES `picture` (`user_id`, `album_name`, `filename`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Reflect relations between shared albums and pictures';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-14 23:19:03
+-- Dump completed on 2016-12-15 10:51:41

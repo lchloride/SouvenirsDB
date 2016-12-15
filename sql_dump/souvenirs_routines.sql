@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
@@ -44,7 +44,7 @@ DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET t_error=1;
 START TRANSACTION;
 select int_val into x from info where key_id = "groupid";
 set id = LPAD(x+1, 9, '0');
-insert into souvenirs.`group` values (id, gn, intro, CONCAT('Shared_album_from_', gn), CONCAT('\\group\\', id, '_', ac));
+insert into souvenirs.`group`(group_id, group_name, intro, shared_album_name, album_cover) values (id, gn, intro, CONCAT('Shared_album_from_', gn), CONCAT('\\\\group\\\\', id, '_', ac));
 update info set int_val = (x+1) where key_id = "groupid";
 IF t_error = 1 THEN  
 	ROLLBACK;  
@@ -59,6 +59,7 @@ DELIMITER ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `AddGroupWithoutCover` */;
+ALTER DATABASE `souvenirs` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -93,6 +94,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+ALTER DATABASE `souvenirs` CHARACTER SET utf8 COLLATE utf8_bin ;
 /*!50003 DROP PROCEDURE IF EXISTS `AddUser` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -120,10 +122,10 @@ if x > 0 then
 else
 	SELECT int_val iNTO x FROM info WHERE key_id = 'userid';
     set id = CONCAT('#', LPAD(x+1, 8, '0'));
-	set filename = CONCAT('\\',id, '\\user\\', ava_name);
-	insert into user values (id, un, pwd, filename);
+	set filename = CONCAT('\\\\',id, '\\\\user\\\\', ava_name);
+	insert into user(user_id, username, password, avatar) values (id, un, pwd, filename);
 	UPDATE info SET int_val = (x + 1) WHERE key_id = 'userid';
-	insert into album values(id, 'user', filename, 'This is the default album');
+	insert into album(user_id, album_name, album_cover, intro) values(id, 'user', filename, 'This is the default album');
 	insert into picture(user_id, album_name, filename, format, description)
 		values(id, 'user', ava_name, substring_index(ava_name, '.', -1), 'This is your profile picture.');
 
@@ -167,7 +169,7 @@ else
 	set id = CONCAT('#', LPAD(x+1, 8, '0'));
 	insert into user(user_id, username, password) values (id, un, pwd);
 	update info set int_val = (x+1) where key_id = "userid";
-	insert into album values(id, 'user', '\\res\\default_cover.png', 'This is a default album');
+	insert into album(user_id, album_name, intro) values(id, 'user', 'This is a default album');
 	IF t_error = 1 THEN  
 		ROLLBACK;  
 	ELSE  
@@ -191,4 +193,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-14 23:19:04
+-- Dump completed on 2016-12-15 10:51:42

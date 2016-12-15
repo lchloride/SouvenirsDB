@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
@@ -25,15 +25,15 @@ DROP TABLE IF EXISTS `picture`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `picture` (
-  `user_id` varchar(9) NOT NULL,
-  `album_name` varchar(50) NOT NULL,
-  `filename` varchar(55) NOT NULL,
-  `format` varchar(5) NOT NULL COMMENT 'filename extension',
-  `description` varchar(200) DEFAULT '',
-  `upload_timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_id` varchar(9) COLLATE utf8_bin NOT NULL,
+  `album_name` varchar(60) COLLATE utf8_bin NOT NULL,
+  `filename` varchar(70) CHARACTER SET utf8 NOT NULL COMMENT 'filename(60characters)+''.''+format(10characters)',
+  `format` varchar(10) COLLATE utf8_bin NOT NULL,
+  `description` varchar(200) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `upload_timestamp` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`,`album_name`,`filename`),
-  CONSTRAINT `album_name_P2A` FOREIGN KEY (`user_id`, `album_name`) REFERENCES `album` (`user_id`, `album_name`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `P_USERID` FOREIGN KEY (`user_id`, `album_name`) REFERENCES `album` (`user_id`, `album_name`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-14 23:19:03
+-- Dump completed on 2016-12-15 10:51:41

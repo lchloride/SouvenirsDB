@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
@@ -25,13 +25,13 @@ DROP TABLE IF EXISTS `user_belong_group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_belong_group` (
-  `user_id` varchar(9) NOT NULL,
-  `group_id` varchar(9) NOT NULL,
+  `user_id` varchar(9) COLLATE utf8_bin NOT NULL,
+  `group_id` varchar(9) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`user_id`,`group_id`),
-  KEY `group_id_idx` (`group_id`),
-  CONSTRAINT `group_id` FOREIGN KEY (`group_id`) REFERENCES `group` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `UBG_GROUP_idx` (`group_id`),
+  CONSTRAINT `UBG_GROUP` FOREIGN KEY (`group_id`) REFERENCES `group` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `UBG_USER` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Reflect the relation between user and group';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-14 23:19:04
+-- Dump completed on 2016-12-15 10:51:42

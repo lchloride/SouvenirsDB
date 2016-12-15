@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
@@ -25,11 +25,11 @@ DROP TABLE IF EXISTS `info`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `info` (
-  `key_id` varchar(50) NOT NULL,
+  `key_id` varchar(50) COLLATE utf8_bin NOT NULL,
   `int_val` int(11) DEFAULT NULL,
-  `char_val` varchar(260) DEFAULT NULL,
+  `char_val` varchar(260) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`key_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='store system values';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Store several parameters served for other tables';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-14 23:19:02
+-- Dump completed on 2016-12-15 10:51:40
