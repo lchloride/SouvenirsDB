@@ -18,35 +18,40 @@ USE `souvenirs`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user_belong_group`
+-- Table structure for table `comment`
 --
 
-DROP TABLE IF EXISTS `user_belong_group`;
+DROP TABLE IF EXISTS `comment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_belong_group` (
+CREATE TABLE `comment` (
   `user_id` varchar(9) COLLATE utf8_bin NOT NULL,
-  `group_id` varchar(9) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`user_id`,`group_id`),
-  KEY `UBG_group_idx` (`group_id`),
-  CONSTRAINT `UBG_group` FOREIGN KEY (`group_id`) REFERENCES `group` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `UBG_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `album_name` varchar(60) COLLATE utf8_bin NOT NULL,
+  `filename` varchar(70) COLLATE utf8_bin NOT NULL,
+  `comment_user_id` varchar(9) COLLATE utf8_bin NOT NULL,
+  `create_timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `comment` varchar(200) COLLATE utf8_bin NOT NULL,
+  `is_valid` int(11) NOT NULL DEFAULT '1',
+  `reply_comment_user_id` varchar(9) COLLATE utf8_bin DEFAULT NULL,
+  `reply_timestamp` datetime DEFAULT NULL,
+  PRIMARY KEY (`user_id`,`album_name`,`filename`,`comment_user_id`,`create_timestamp`),
+  KEY `C_user_idx` (`comment_user_id`),
+  KEY `C_comment_idx` (`reply_comment_user_id`,`reply_timestamp`),
+  KEY `C_commetn_idx` (`reply_comment_user_id`,`reply_timestamp`),
+  CONSTRAINT `C_picture` FOREIGN KEY (`user_id`, `album_name`, `filename`) REFERENCES `picture` (`user_id`, `album_name`, `filename`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `C_user` FOREIGN KEY (`comment_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_belong_group`
+-- Dumping data for table `comment`
 --
 
-LOCK TABLES `user_belong_group` WRITE;
-/*!40000 ALTER TABLE `user_belong_group` DISABLE KEYS */;
-INSERT INTO `user_belong_group` VALUES ('#00000001','000000001');
-INSERT INTO `user_belong_group` VALUES ('#00000002','000000002');
-INSERT INTO `user_belong_group` VALUES ('#00000003','000000002');
-INSERT INTO `user_belong_group` VALUES ('#00000001','000000003');
-INSERT INTO `user_belong_group` VALUES ('#00000002','000000003');
-INSERT INTO `user_belong_group` VALUES ('#00000003','000000003');
-/*!40000 ALTER TABLE `user_belong_group` ENABLE KEYS */;
+LOCK TABLES `comment` WRITE;
+/*!40000 ALTER TABLE `comment` DISABLE KEYS */;
+INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg','#00000002','2016-12-21 21:27:37','Nice tour!',1,NULL,NULL);
+INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg','#00000003','2016-12-21 21:28:03','Where is it?',1,NULL,NULL);
+/*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

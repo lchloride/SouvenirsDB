@@ -27,12 +27,12 @@ DROP TABLE IF EXISTS `picture`;
 CREATE TABLE `picture` (
   `user_id` varchar(9) COLLATE utf8_bin NOT NULL,
   `album_name` varchar(60) COLLATE utf8_bin NOT NULL,
-  `filename` varchar(70) CHARACTER SET utf8 NOT NULL COMMENT 'filename(60characters)+''.''+format(10characters)',
+  `filename` varchar(70) COLLATE utf8_bin NOT NULL,
   `format` varchar(10) COLLATE utf8_bin NOT NULL,
   `description` varchar(200) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `upload_timestamp` datetime DEFAULT CURRENT_TIMESTAMP,
+  `upload_timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`,`album_name`,`filename`),
-  CONSTRAINT `P_USERID` FOREIGN KEY (`user_id`, `album_name`) REFERENCES `album` (`user_id`, `album_name`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `P_user` FOREIGN KEY (`user_id`, `album_name`) REFERENCES `album` (`user_id`, `album_name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -63,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-15 10:51:41
+-- Dump completed on 2016-12-22  0:18:13

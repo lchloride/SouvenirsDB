@@ -26,11 +26,11 @@ DROP TABLE IF EXISTS `group`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `group` (
   `group_id` varchar(9) COLLATE utf8_bin NOT NULL,
-  `group_name` varchar(50) COLLATE utf8_bin NOT NULL,
-  `intro` varchar(200) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `shared_album_name` varchar(70) CHARACTER SET utf8 NOT NULL COMMENT '''Shared_Album_from_''+group_name, max 68 characters',
-  `album_cover` varchar(260) COLLATE utf8_bin NOT NULL DEFAULT '\\\\res\\\\default_cover.png',
-  `create_timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `group_name` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `intro` varchar(200) COLLATE utf8_bin DEFAULT '',
+  `shared_album_name` varchar(70) COLLATE utf8_bin DEFAULT 'default_shared_album_name',
+  `album_cover` varchar(260) COLLATE utf8_bin DEFAULT '\\\\res\\\\defualt_cover.png',
+  `create_timestamp` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`group_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -46,7 +46,6 @@ INSERT INTO `group` VALUES ('000000002','Classmate','2016 computer major','Share
 INSERT INTO `group` VALUES ('000000003','Sample','Sample Group','Shared_Album_from_Sample','\\\\res\\\\default_cover.png','2016-12-15 10:10:12');
 /*!40000 ALTER TABLE `group` ENABLE KEYS */;
 UNLOCK TABLES;
-ALTER DATABASE `souvenirs` CHARACTER SET utf8 COLLATE utf8_general_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -67,7 +66,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `souvenirs` CHARACTER SET utf8 COLLATE utf8_bin ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -78,4 +76,4 @@ ALTER DATABASE `souvenirs` CHARACTER SET utf8 COLLATE utf8_bin ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-15 10:51:41
+-- Dump completed on 2016-12-22  0:18:13

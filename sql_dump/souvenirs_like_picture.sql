@@ -18,35 +18,32 @@ USE `souvenirs`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user_belong_group`
+-- Table structure for table `like_picture`
 --
 
-DROP TABLE IF EXISTS `user_belong_group`;
+DROP TABLE IF EXISTS `like_picture`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_belong_group` (
+CREATE TABLE `like_picture` (
   `user_id` varchar(9) COLLATE utf8_bin NOT NULL,
-  `group_id` varchar(9) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`user_id`,`group_id`),
-  KEY `UBG_group_idx` (`group_id`),
-  CONSTRAINT `UBG_group` FOREIGN KEY (`group_id`) REFERENCES `group` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `UBG_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `album_name` varchar(60) COLLATE utf8_bin NOT NULL,
+  `filename` varchar(70) COLLATE utf8_bin NOT NULL,
+  `like_user_id` varchar(9) COLLATE utf8_bin NOT NULL,
+  `create_timestamp` datetime DEFAULT NULL,
+  PRIMARY KEY (`user_id`,`album_name`,`filename`,`like_user_id`),
+  KEY `LP_user_idx` (`like_user_id`),
+  CONSTRAINT `LP_picture` FOREIGN KEY (`user_id`, `album_name`, `filename`) REFERENCES `picture` (`user_id`, `album_name`, `filename`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `LP_user` FOREIGN KEY (`like_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_belong_group`
+-- Dumping data for table `like_picture`
 --
 
-LOCK TABLES `user_belong_group` WRITE;
-/*!40000 ALTER TABLE `user_belong_group` DISABLE KEYS */;
-INSERT INTO `user_belong_group` VALUES ('#00000001','000000001');
-INSERT INTO `user_belong_group` VALUES ('#00000002','000000002');
-INSERT INTO `user_belong_group` VALUES ('#00000003','000000002');
-INSERT INTO `user_belong_group` VALUES ('#00000001','000000003');
-INSERT INTO `user_belong_group` VALUES ('#00000002','000000003');
-INSERT INTO `user_belong_group` VALUES ('#00000003','000000003');
-/*!40000 ALTER TABLE `user_belong_group` ENABLE KEYS */;
+LOCK TABLES `like_picture` WRITE;
+/*!40000 ALTER TABLE `like_picture` DISABLE KEYS */;
+/*!40000 ALTER TABLE `like_picture` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -58,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-22  0:18:13
+-- Dump completed on 2016-12-22  0:18:14

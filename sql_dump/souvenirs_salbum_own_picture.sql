@@ -28,12 +28,12 @@ CREATE TABLE `salbum_own_picture` (
   `group_id` varchar(9) COLLATE utf8_bin NOT NULL,
   `user_id` varchar(9) COLLATE utf8_bin NOT NULL,
   `album_name` varchar(60) COLLATE utf8_bin NOT NULL,
-  `filename` varchar(70) CHARACTER SET utf8 NOT NULL,
+  `filename` varchar(70) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`group_id`,`user_id`,`album_name`,`filename`),
-  KEY `SOP_PICTURE_idx` (`user_id`,`album_name`,`filename`),
-  CONSTRAINT `SOP_GROUP` FOREIGN KEY (`group_id`) REFERENCES `group` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `SOP_PICTURE` FOREIGN KEY (`user_id`, `album_name`, `filename`) REFERENCES `picture` (`user_id`, `album_name`, `filename`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Reflect relations between shared albums and pictures';
+  KEY `SOP_picture_idx` (`user_id`,`album_name`,`filename`),
+  CONSTRAINT `SOP_group` FOREIGN KEY (`group_id`) REFERENCES `group` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `SOP_picture` FOREIGN KEY (`user_id`, `album_name`, `filename`) REFERENCES `picture` (`user_id`, `album_name`, `filename`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-15 10:51:41
+-- Dump completed on 2016-12-22  0:18:14

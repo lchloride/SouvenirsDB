@@ -29,7 +29,7 @@ CREATE TABLE `info` (
   `int_val` int(11) DEFAULT NULL,
   `char_val` varchar(260) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`key_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Store several parameters served for other tables';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='store several parameters served for database';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `info` (
 LOCK TABLES `info` WRITE;
 /*!40000 ALTER TABLE `info` DISABLE KEYS */;
 INSERT INTO `info` VALUES ('groupid',3,NULL);
-INSERT INTO `info` VALUES ('userid',3,NULL);
+INSERT INTO `info` VALUES ('userid',5,NULL);
 /*!40000 ALTER TABLE `info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-15 10:51:40
+-- Dump completed on 2016-12-22  0:18:14
