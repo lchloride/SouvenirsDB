@@ -28,16 +28,13 @@ CREATE TABLE `comment` (
   `user_id` varchar(9) COLLATE utf8_bin NOT NULL,
   `album_name` varchar(60) COLLATE utf8_bin NOT NULL,
   `filename` varchar(70) COLLATE utf8_bin NOT NULL,
+  `comment_id_in_pic` int(11) NOT NULL,
   `comment_user_id` varchar(9) COLLATE utf8_bin NOT NULL,
-  `create_timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `comment` varchar(200) COLLATE utf8_bin NOT NULL,
   `is_valid` int(11) NOT NULL DEFAULT '1',
-  `reply_comment_user_id` varchar(9) COLLATE utf8_bin DEFAULT NULL,
-  `reply_timestamp` datetime DEFAULT NULL,
-  PRIMARY KEY (`user_id`,`album_name`,`filename`,`comment_user_id`,`create_timestamp`),
+  `create_timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_id`,`album_name`,`filename`,`comment_id_in_pic`,`create_timestamp`),
   KEY `C_user_idx` (`comment_user_id`),
-  KEY `C_comment_idx` (`reply_comment_user_id`,`reply_timestamp`),
-  KEY `C_commetn_idx` (`reply_comment_user_id`,`reply_timestamp`),
   CONSTRAINT `C_picture` FOREIGN KEY (`user_id`, `album_name`, `filename`) REFERENCES `picture` (`user_id`, `album_name`, `filename`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `C_user` FOREIGN KEY (`comment_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -49,8 +46,9 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg','#00000002','2016-12-21 21:27:37','Nice tour!',1,NULL,NULL);
-INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg','#00000003','2016-12-21 21:28:03','Where is it?',1,NULL,NULL);
+INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg',1,'#00000003','Where is it?',1,'2016-12-21 21:28:03');
+INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg',2,'#00000002','Nice tour!',1,'2016-12-25 23:38:44');
+INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg',3,'#00000001','At Beidaihe, Hebei Province.',1,'2016-12-25 23:40:00');
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -63,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-22  0:18:13
+-- Dump completed on 2016-12-25 23:44:16

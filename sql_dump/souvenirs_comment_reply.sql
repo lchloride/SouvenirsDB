@@ -18,40 +18,33 @@ USE `souvenirs`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `picture`
+-- Table structure for table `comment_reply`
 --
 
-DROP TABLE IF EXISTS `picture`;
+DROP TABLE IF EXISTS `comment_reply`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `picture` (
-  `user_id` varchar(9) COLLATE utf8_bin NOT NULL,
+CREATE TABLE `comment_reply` (
+  `owner_user_id` varchar(9) COLLATE utf8_bin NOT NULL,
   `album_name` varchar(60) COLLATE utf8_bin NOT NULL,
   `filename` varchar(70) COLLATE utf8_bin NOT NULL,
-  `format` varchar(10) COLLATE utf8_bin NOT NULL,
-  `description` varchar(200) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `upload_timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`user_id`,`album_name`,`filename`),
-  CONSTRAINT `P_user` FOREIGN KEY (`user_id`, `album_name`) REFERENCES `album` (`user_id`, `album_name`) ON DELETE CASCADE ON UPDATE CASCADE
+  `comment_id_in_pic` int(11) NOT NULL,
+  `reply_comment_id_in_pic` int(11) NOT NULL,
+  PRIMARY KEY (`owner_user_id`,`album_name`,`filename`,`comment_id_in_pic`,`reply_comment_id_in_pic`),
+  KEY `CR_reply_idx` (`owner_user_id`,`album_name`,`filename`,`reply_comment_id_in_pic`),
+  CONSTRAINT `CR_reply` FOREIGN KEY (`owner_user_id`, `album_name`, `filename`, `reply_comment_id_in_pic`) REFERENCES `comment` (`user_id`, `album_name`, `filename`, `comment_id_in_pic`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `CR_user` FOREIGN KEY (`owner_user_id`, `album_name`, `filename`, `comment_id_in_pic`) REFERENCES `comment` (`user_id`, `album_name`, `filename`, `comment_id_in_pic`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `picture`
+-- Dumping data for table `comment_reply`
 --
 
-LOCK TABLES `picture` WRITE;
-/*!40000 ALTER TABLE `picture` DISABLE KEYS */;
-INSERT INTO `picture` VALUES ('#00000001','daily life','cover.jpg','jpg','','2016-12-05 16:42:17');
-INSERT INTO `picture` VALUES ('#00000001','daily life','party.jpg','jpg','Nice party','2016-12-05 16:36:08');
-INSERT INTO `picture` VALUES ('#00000001','daily life','tour.jpg','jpg','Tour to beach','2016-12-05 16:35:17');
-INSERT INTO `picture` VALUES ('#00000002','user','avatar.jpg','jpg','This is your profile picture.','2016-12-05 15:57:02');
-INSERT INTO `picture` VALUES ('#00000003','study','oso.jpg','jpg','','2016-12-05 16:37:57');
-INSERT INTO `picture` VALUES ('#00000003','study','website.jpg','jpg','Souvenirs Website','2016-12-05 16:38:38');
-INSERT INTO `picture` VALUES ('#00000003','tour','golden gate bridge.jpg','jpg','','2016-12-05 16:39:06');
-INSERT INTO `picture` VALUES ('#00000003','tour','night sakura.jpg','jpg','Sakara blooms at Sumidagawa, Tokyo','2016-12-05 16:41:12');
-INSERT INTO `picture` VALUES ('#00000003','user','logo.png','png','This is your profile picture.','2016-12-05 15:57:47');
-/*!40000 ALTER TABLE `picture` ENABLE KEYS */;
+LOCK TABLES `comment_reply` WRITE;
+/*!40000 ALTER TABLE `comment_reply` DISABLE KEYS */;
+INSERT INTO `comment_reply` VALUES ('#00000001','daily life','tour.jpg',1,3);
+/*!40000 ALTER TABLE `comment_reply` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
