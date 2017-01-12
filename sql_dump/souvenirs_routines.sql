@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
-USE `souvenirs`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: souvenirs
@@ -41,8 +39,13 @@ DROP TABLE IF EXISTS `query_available_album`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 /*!50001 CREATE VIEW `query_available_album` AS SELECT 
+ 1 AS `user_id`,
+ 1 AS `owner_id`,
  1 AS `album_name`,
- 1 AS `user_id`*/;
+ 1 AS `intro`,
+ 1 AS `album_cover`,
+ 1 AS `create_timestamp`,
+ 1 AS `isPersonal`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -92,7 +95,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `query_available_album` AS select `album`.`album_name` AS `album_name`,`album`.`user_id` AS `user_id` from `album` union select `group`.`shared_album_name` AS `album_name`,`user_belong_group`.`user_id` AS `user_id` from (`user_belong_group` join `group`) where (`group`.`group_id` = `user_belong_group`.`group_id`) */;
+/*!50001 VIEW `query_available_album` AS select `album`.`user_id` AS `user_id`,`album`.`user_id` AS `owner_id`,`album`.`album_name` AS `album_name`,`album`.`intro` AS `intro`,`album`.`album_cover` AS `album_cover`,`album`.`create_timestamp` AS `create_timestamp`,'true' AS `isPersonal` from `album` union select `user_belong_group`.`user_id` AS `user_id`,`group`.`group_id` AS `owner_id`,`group`.`shared_album_name` AS `album_name`,`group`.`intro` AS `intro`,`group`.`album_cover` AS `album_cover`,`group`.`create_timestamp` AS `create_timestamp`,'false' AS `isPersonal` from (`user_belong_group` join `group`) where (`group`.`group_id` = `user_belong_group`.`group_id`) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -289,4 +292,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-25 23:44:18
+-- Dump completed on 2017-01-13  0:08:19

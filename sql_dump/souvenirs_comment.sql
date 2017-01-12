@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
-USE `souvenirs`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: souvenirs
@@ -33,7 +31,7 @@ CREATE TABLE `comment` (
   `comment` varchar(200) COLLATE utf8_bin NOT NULL,
   `is_valid` int(11) NOT NULL DEFAULT '1',
   `create_timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`user_id`,`album_name`,`filename`,`comment_id_in_pic`,`create_timestamp`),
+  PRIMARY KEY (`user_id`,`album_name`,`filename`,`comment_id_in_pic`),
   KEY `C_user_idx` (`comment_user_id`),
   CONSTRAINT `C_picture` FOREIGN KEY (`user_id`, `album_name`, `filename`) REFERENCES `picture` (`user_id`, `album_name`, `filename`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `C_user` FOREIGN KEY (`comment_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -61,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-25 23:44:16
+-- Dump completed on 2017-01-13  0:08:17
