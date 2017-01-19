@@ -43,6 +43,7 @@ CREATE TABLE `like_picture` (
 
 LOCK TABLES `like_picture` WRITE;
 /*!40000 ALTER TABLE `like_picture` DISABLE KEYS */;
+INSERT INTO `like_picture` VALUES ('#00000001','daily life','tour.jpg','#00000002','2017-01-19 14:55:11');
 /*!40000 ALTER TABLE `like_picture` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-18 17:54:32
+-- Dump completed on 2017-01-19 17:46:58

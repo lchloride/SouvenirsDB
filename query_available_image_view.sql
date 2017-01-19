@@ -5,7 +5,7 @@ CREATE
 VIEW `query_available_image` AS
     SELECT 
         `user`.`user_id` AS `user_id`,
-        `group`.`shared_album_name` AS `album_name`,
+        `group`.`group_id` AS `album_identifier`,
         `salbum_own_picture`.`user_id` AS `owner_id`,
         `salbum_own_picture`.`album_name` AS `owner_album_name`,
         `salbum_own_picture`.`filename` AS `owner_filename`,
@@ -27,7 +27,7 @@ VIEW `query_available_image` AS
             AND (`salbum_own_picture`.`filename` = `picture`.`filename`)) 
     UNION SELECT 
         `picture`.`user_id` AS `user_id`,
-        `picture`.`album_name` AS `album_name`,
+        `picture`.`album_name` AS `album_identifier`,
         `picture`.`user_id` AS `owner_id`,
         `picture`.`album_name` AS `owner_album_name`,
         `picture`.`filename` AS `owner_filename`,

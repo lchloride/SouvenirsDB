@@ -79,7 +79,7 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 /*!50001 CREATE VIEW `query_available_image` AS SELECT 
  1 AS `user_id`,
- 1 AS `album_name`,
+ 1 AS `album_identifier`,
  1 AS `owner_id`,
  1 AS `owner_album_name`,
  1 AS `owner_filename`,
@@ -155,7 +155,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `query_available_image` AS select `user`.`user_id` AS `user_id`,`group`.`shared_album_name` AS `album_name`,`salbum_own_picture`.`user_id` AS `owner_id`,`salbum_own_picture`.`album_name` AS `owner_album_name`,`salbum_own_picture`.`filename` AS `owner_filename`,`picture`.`format` AS `owner_format`,`picture`.`description` AS `owner_description`,`picture`.`upload_timestamp` AS `owner_upload_timestamp` from ((((`user` join `user_belong_group`) join `group`) join `salbum_own_picture`) join `picture`) where ((`user`.`user_id` = `user_belong_group`.`user_id`) and (`user_belong_group`.`group_id` = `group`.`group_id`) and (`group`.`group_id` = `salbum_own_picture`.`group_id`) and (`salbum_own_picture`.`user_id` = `picture`.`user_id`) and (`salbum_own_picture`.`album_name` = `picture`.`album_name`) and (`salbum_own_picture`.`filename` = `picture`.`filename`)) union select `picture`.`user_id` AS `user_id`,`picture`.`album_name` AS `album_name`,`picture`.`user_id` AS `owner_id`,`picture`.`album_name` AS `owner_album_name`,`picture`.`filename` AS `owner_filename`,`picture`.`format` AS `owner_format`,`picture`.`description` AS `owner_description`,`picture`.`upload_timestamp` AS `owner_upload_timestamp` from `picture` */;
+/*!50001 VIEW `query_available_image` AS select `user`.`user_id` AS `user_id`,`group`.`group_id` AS `album_identifier`,`salbum_own_picture`.`user_id` AS `owner_id`,`salbum_own_picture`.`album_name` AS `owner_album_name`,`salbum_own_picture`.`filename` AS `owner_filename`,`picture`.`format` AS `owner_format`,`picture`.`description` AS `owner_description`,`picture`.`upload_timestamp` AS `owner_upload_timestamp` from ((((`user` join `user_belong_group`) join `group`) join `salbum_own_picture`) join `picture`) where ((`user`.`user_id` = `user_belong_group`.`user_id`) and (`user_belong_group`.`group_id` = `group`.`group_id`) and (`group`.`group_id` = `salbum_own_picture`.`group_id`) and (`salbum_own_picture`.`user_id` = `picture`.`user_id`) and (`salbum_own_picture`.`album_name` = `picture`.`album_name`) and (`salbum_own_picture`.`filename` = `picture`.`filename`)) union select `picture`.`user_id` AS `user_id`,`picture`.`album_name` AS `album_identifier`,`picture`.`user_id` AS `owner_id`,`picture`.`album_name` AS `owner_album_name`,`picture`.`filename` AS `owner_filename`,`picture`.`format` AS `owner_format`,`picture`.`description` AS `owner_description`,`picture`.`upload_timestamp` AS `owner_upload_timestamp` from `picture` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -334,4 +334,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-18 17:54:33
+-- Dump completed on 2017-01-19 17:46:58
