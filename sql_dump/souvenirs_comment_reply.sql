@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -29,10 +29,10 @@ CREATE TABLE `comment_reply` (
   `album_name` varchar(60) COLLATE utf8_bin NOT NULL,
   `filename` varchar(70) COLLATE utf8_bin NOT NULL,
   `comment_id_in_pic` int(11) NOT NULL,
-  `reply_comment_id_in_pic` int(11) NOT NULL,
-  PRIMARY KEY (`owner_user_id`,`album_name`,`filename`,`comment_id_in_pic`,`reply_comment_id_in_pic`),
-  KEY `CR_reply_idx` (`owner_user_id`,`album_name`,`filename`,`reply_comment_id_in_pic`),
-  CONSTRAINT `CR_reply` FOREIGN KEY (`owner_user_id`, `album_name`, `filename`, `reply_comment_id_in_pic`) REFERENCES `comment` (`user_id`, `album_name`, `filename`, `comment_id_in_pic`) ON DELETE CASCADE ON UPDATE CASCADE,
+  `reply_id_in_pic` int(11) NOT NULL,
+  PRIMARY KEY (`owner_user_id`,`album_name`,`filename`,`comment_id_in_pic`,`reply_id_in_pic`),
+  KEY `CR_reply_idx` (`owner_user_id`,`album_name`,`filename`,`reply_id_in_pic`),
+  CONSTRAINT `CR_reply` FOREIGN KEY (`owner_user_id`, `album_name`, `filename`, `reply_id_in_pic`) REFERENCES `comment` (`user_id`, `album_name`, `filename`, `comment_id_in_pic`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `CR_user` FOREIGN KEY (`owner_user_id`, `album_name`, `filename`, `comment_id_in_pic`) REFERENCES `comment` (`user_id`, `album_name`, `filename`, `comment_id_in_pic`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-25 23:44:15
+-- Dump completed on 2017-01-18 17:54:31

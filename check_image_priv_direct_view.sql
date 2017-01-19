@@ -5,6 +5,7 @@ CREATE
 VIEW `check_image_priv_direct` AS
     SELECT 
         `user`.`user_id` AS `allowed_user_id`,
+        `group`.`shared_album_name` AS `shared_album_name`,
         `salbum_own_picture`.`user_id` AS `owner_id`,
         `salbum_own_picture`.`album_name` AS `album_name`,
         `salbum_own_picture`.`filename` AS `filename`

@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -41,8 +41,32 @@ DROP TABLE IF EXISTS `query_available_album`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 /*!50001 CREATE VIEW `query_available_album` AS SELECT 
+ 1 AS `user_id`,
+ 1 AS `owner_id`,
  1 AS `album_name`,
- 1 AS `user_id`*/;
+ 1 AS `intro`,
+ 1 AS `album_cover`,
+ 1 AS `create_timestamp`,
+ 1 AS `isPersonal`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `query_comment_and _reply`
+--
+
+DROP TABLE IF EXISTS `query_comment_and _reply`;
+/*!50001 DROP VIEW IF EXISTS `query_comment_and _reply`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `query_comment_and _reply` AS SELECT 
+ 1 AS `user_id`,
+ 1 AS `album_name`,
+ 1 AS `picture_name`,
+ 1 AS `comment_user_id`,
+ 1 AS `comment_content`,
+ 1 AS `time`,
+ 1 AS `reply_user_id`,
+ 1 AS `reply_content`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -58,7 +82,10 @@ SET character_set_client = utf8;
  1 AS `album_name`,
  1 AS `owner_id`,
  1 AS `owner_album_name`,
- 1 AS `owner_filename`*/;
+ 1 AS `owner_filename`,
+ 1 AS `owner_format`,
+ 1 AS `owner_description`,
+ 1 AS `owner_upload_timestamp`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -92,7 +119,25 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `query_available_album` AS select `album`.`album_name` AS `album_name`,`album`.`user_id` AS `user_id` from `album` union select `group`.`shared_album_name` AS `album_name`,`user_belong_group`.`user_id` AS `user_id` from (`user_belong_group` join `group`) where (`group`.`group_id` = `user_belong_group`.`group_id`) */;
+/*!50001 VIEW `query_available_album` AS select `album`.`user_id` AS `user_id`,`album`.`user_id` AS `owner_id`,`album`.`album_name` AS `album_name`,`album`.`intro` AS `intro`,`album`.`album_cover` AS `album_cover`,`album`.`create_timestamp` AS `create_timestamp`,'true' AS `isPersonal` from `album` union select `user_belong_group`.`user_id` AS `user_id`,`group`.`group_id` AS `owner_id`,`group`.`shared_album_name` AS `album_name`,`group`.`intro` AS `intro`,`group`.`album_cover` AS `album_cover`,`group`.`create_timestamp` AS `create_timestamp`,'false' AS `isPersonal` from (`user_belong_group` join `group`) where (`group`.`group_id` = `user_belong_group`.`group_id`) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `query_comment_and _reply`
+--
+
+/*!50001 DROP VIEW IF EXISTS `query_comment_and _reply`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `query_comment_and _reply` AS select `a`.`user_id` AS `user_id`,`a`.`album_name` AS `album_name`,`a`.`filename` AS `picture_name`,`a`.`comment_user_id` AS `comment_user_id`,`a`.`comment` AS `comment_content`,`a`.`create_timestamp` AS `time`,`c`.`comment_user_id` AS `reply_user_id`,`c`.`comment` AS `reply_content` from ((`comment` `a` left join `comment_reply` `b` on(((`a`.`user_id` = `b`.`owner_user_id`) and (`a`.`album_name` = `b`.`album_name`) and (`a`.`filename` = `b`.`filename`) and (`a`.`comment_id_in_pic` = `b`.`reply_id_in_pic`) and (`a`.`is_valid` = 1)))) left join `comment` `c` on(((`b`.`owner_user_id` = `c`.`user_id`) and (`b`.`album_name` = `c`.`album_name`) and (`b`.`filename` = `c`.`filename`) and (`b`.`comment_id_in_pic` = `c`.`comment_id_in_pic`)))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -110,7 +155,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `query_available_image` AS select `user`.`user_id` AS `user_id`,`group`.`shared_album_name` AS `album_name`,`salbum_own_picture`.`user_id` AS `owner_id`,`salbum_own_picture`.`album_name` AS `owner_album_name`,`salbum_own_picture`.`filename` AS `owner_filename` from (((`user` join `user_belong_group`) join `group`) join `salbum_own_picture`) where ((`user`.`user_id` = `user_belong_group`.`user_id`) and (`user_belong_group`.`group_id` = `group`.`group_id`) and (`group`.`group_id` = `salbum_own_picture`.`group_id`)) union select `picture`.`user_id` AS `user_id`,`picture`.`album_name` AS `album_name`,`picture`.`user_id` AS `owner_id`,`picture`.`album_name` AS `owner_album_name`,`picture`.`filename` AS `owner_filename` from `picture` */;
+/*!50001 VIEW `query_available_image` AS select `user`.`user_id` AS `user_id`,`group`.`shared_album_name` AS `album_name`,`salbum_own_picture`.`user_id` AS `owner_id`,`salbum_own_picture`.`album_name` AS `owner_album_name`,`salbum_own_picture`.`filename` AS `owner_filename`,`picture`.`format` AS `owner_format`,`picture`.`description` AS `owner_description`,`picture`.`upload_timestamp` AS `owner_upload_timestamp` from ((((`user` join `user_belong_group`) join `group`) join `salbum_own_picture`) join `picture`) where ((`user`.`user_id` = `user_belong_group`.`user_id`) and (`user_belong_group`.`group_id` = `group`.`group_id`) and (`group`.`group_id` = `salbum_own_picture`.`group_id`) and (`salbum_own_picture`.`user_id` = `picture`.`user_id`) and (`salbum_own_picture`.`album_name` = `picture`.`album_name`) and (`salbum_own_picture`.`filename` = `picture`.`filename`)) union select `picture`.`user_id` AS `user_id`,`picture`.`album_name` AS `album_name`,`picture`.`user_id` AS `owner_id`,`picture`.`album_name` AS `owner_album_name`,`picture`.`filename` AS `owner_filename`,`picture`.`format` AS `owner_format`,`picture`.`description` AS `owner_description`,`picture`.`upload_timestamp` AS `owner_upload_timestamp` from `picture` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -289,4 +334,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-25 23:44:18
+-- Dump completed on 2017-01-18 17:54:33

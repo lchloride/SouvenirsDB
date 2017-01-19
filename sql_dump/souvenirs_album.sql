@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -41,14 +41,12 @@ CREATE TABLE `album` (
 
 LOCK TABLES `album` WRITE;
 /*!40000 ALTER TABLE `album` DISABLE KEYS */;
-INSERT INTO `album` VALUES ('#00000001','daily life','\\\\#00000001\\\\daily life\\\\cover.jpg','Pictures in daily life','2016-12-15 09:58:06');
-INSERT INTO `album` VALUES ('#00000001','user','\\\\res\\\\default_cover.png','This is a default album.','2016-12-15 09:58:06');
-INSERT INTO `album` VALUES ('#00000002','user','\\\\#00000002\\\\user\\\\avatar.jpg','This is a default album.','2016-12-15 09:58:06');
-INSERT INTO `album` VALUES ('#00000003','study','\\\\#00000003\\\\study\\\\oso.jpg','','2016-12-15 09:58:06');
-INSERT INTO `album` VALUES ('#00000003','tour','\\\\#00000003\\\\tour\\\\golden gate bridge.jpg','nice scenary','2016-12-15 09:58:06');
-INSERT INTO `album` VALUES ('#00000003','user','\\\\#00000003\\\\user\\\\logo.png','This is a default album.','2016-12-15 09:58:06');
-INSERT INTO `album` VALUES ('#00000004','user','\\\\res\\\\default_cover.png','This is a default album','2016-12-16 15:23:33');
-INSERT INTO `album` VALUES ('#00000005','user','\\\\res\\\\default_cover.png','This is a default album','2016-12-17 11:17:51');
+INSERT INTO `album` VALUES ('#00000001','daily life','Pictures in daily life','\\\\#00000001\\\\daily life\\\\cover.jpg','2016-12-15 09:58:06');
+INSERT INTO `album` VALUES ('#00000001','user','This is a default album.','\\\\res\\\\default_cover.png','2016-12-15 09:58:06');
+INSERT INTO `album` VALUES ('#00000002','user','This is a default album.','\\\\#00000002\\\\user\\\\avatar.jpg','2016-12-15 09:58:06');
+INSERT INTO `album` VALUES ('#00000003','study','','\\\\#00000003\\\\study\\\\oso.jpg','2016-12-15 09:58:06');
+INSERT INTO `album` VALUES ('#00000003','tour','nice scenary','\\\\#00000003\\\\tour\\\\golden gate bridge.jpg','2016-12-15 09:58:06');
+INSERT INTO `album` VALUES ('#00000003','user','This is a default album.','\\\\#00000003\\\\user\\\\logo.png','2016-12-15 09:58:06');
 /*!40000 ALTER TABLE `album` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-25 23:44:14
+-- Dump completed on 2017-01-18 17:54:31
