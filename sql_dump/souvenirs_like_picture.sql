@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -32,7 +32,7 @@ CREATE TABLE `like_picture` (
   `create_timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`,`album_name`,`filename`,`like_user_id`),
   KEY `LP_user_idx` (`like_user_id`),
-  CONSTRAINT `LP_picture` FOREIGN KEY (`user_id`, `album_name`, `filename`) REFERENCES `picture` (`user_id`, `album_name`, `filename`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `LP_picture` FOREIGN KEY (`user_id`, `album_name`, `filename`) REFERENCES `picture` (`user_id`, `album_name`, `filename`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `LP_user` FOREIGN KEY (`like_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -44,6 +44,9 @@ CREATE TABLE `like_picture` (
 LOCK TABLES `like_picture` WRITE;
 /*!40000 ALTER TABLE `like_picture` DISABLE KEYS */;
 INSERT INTO `like_picture` VALUES ('#00000001','daily life','tour.jpg','#00000002','2017-01-19 14:55:11');
+INSERT INTO `like_picture` VALUES ('#00000001','del_test','1.jpg','#00000001','2017-02-03 00:30:15');
+INSERT INTO `like_picture` VALUES ('#00000001','del_test','1.jpg','#00000002','2017-02-03 00:30:15');
+INSERT INTO `like_picture` VALUES ('#00000001','del_test','2.jpg','#00000003','2017-02-03 00:30:15');
 /*!40000 ALTER TABLE `like_picture` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-19 17:46:58
+-- Dump completed on 2017-02-03  0:32:00

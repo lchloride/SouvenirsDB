@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -324,6 +324,62 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `UpdateAlbumName` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdateAlbumName`(IN id varchar(9), IN old_name varchar(60), IN new_name varchar(60))
+label:BEGIN
+	-- Firstly add new item to table album, picture, comment
+    -- Then update original item of table comment_reply, like_picture, salbum_own_picture
+    DECLARE result INTEGER DEFAULT 1;  
+	declare x integer default 0;
+    declare old_album_cover varchar(60);
+    declare new_album_cover varchar(60);
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET result=0;  
+
+    
+	START TRANSACTION;
+    select count(*) into x from album where user_id=id and album_name = old_name; -- no matching item of old_name
+
+    if x = 0 then
+		set result = 0;
+	else
+        insert into album select user_id, new_name, intro, album_cover, create_timestamp from album where user_id=id and album_name=old_name;
+		insert into picture select user_id, new_name, filename, `format`, description, upload_timestamp from picture where user_id=id and album_name=old_name;
+		insert into comment select user_id, new_name, filename, comment_id_in_pic, comment_user_id, comment, is_valid, create_timestamp from comment where user_id=id and album_name=old_name;
+
+        update comment_reply set album_name = new_name where owner_user_id=id and album_name=old_name;
+		update salbum_own_picture set album_name=new_name where user_id=id and album_name=old_name;
+		update like_picture set album_name = new_name where user_id=id and album_name=old_name;
+		
+        delete from comment where user_id=id and album_name=old_name;
+		delete from picture where user_id=id and album_name=old_name;
+		delete from album where user_id=id and album_name=old_name;
+        
+        select album_cover into old_album_cover from album where user_id=id and album_name=new_name;
+        set new_album_cover = replace(old_album_cover, old_name, new_name);
+        update album set album_cover=new_album_cover where user_id=id and album_name=new_name;
+	end if;
+    
+    IF result = 0 THEN  
+		ROLLBACK;  
+	ELSE  
+		COMMIT;  
+	END IF; 
+select result; 
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -334,4 +390,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-19 17:46:58
+-- Dump completed on 2017-02-03  0:32:01

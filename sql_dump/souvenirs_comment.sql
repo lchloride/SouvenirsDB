@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -49,6 +49,8 @@ LOCK TABLES `comment` WRITE;
 INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg',1,'#00000003','Where is it?',1,'2016-12-21 21:28:03');
 INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg',2,'#00000002','Nice tour!',1,'2016-12-25 23:38:44');
 INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg',3,'#00000001','At Beidaihe, Hebei Province.',1,'2016-12-25 23:40:00');
+INSERT INTO `comment` VALUES ('#00000001','del_test','1.jpg',1,'#00000002','wonderful',1,'2017-02-03 00:30:15');
+INSERT INTO `comment` VALUES ('#00000001','del_test','1.jpg',2,'#00000001','right',1,'2017-02-03 00:30:15');
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-19 17:46:57
+-- Dump completed on 2017-02-03  0:31:59
