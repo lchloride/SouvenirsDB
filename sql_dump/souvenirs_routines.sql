@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -324,6 +324,47 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sharePicture` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sharePicture`(IN uid varchar(9), IN an varchar(60), IN fn varchar(70), IN gid varchar(9))
+BEGIN
+	DECLARE result INTEGER DEFAULT 1;  
+    declare x integer default 0;
+    declare y integer default 1;
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET result=0; 
+    
+    START TRANSACTION;
+    select count(*) into x from user_belong_group where `user_id`=uid and `group_id`=gid;
+    if x = 0 then
+		set result = 0;
+	else
+		select count(*) into y from salbum_own_picture where `user_id`=uid and `group_id`=gid and `album_name`=an and `filename`=fn;
+        if y = 0 then
+			insert into salbum_own_picture(`group_id`, `user_id`, `album_name`, `filename`) values (gid, uid, an, fn);
+		else
+			set result = 2;
+		end if;
+    end if;
+    IF result = 0 THEN  
+		ROLLBACK;  
+	ELSE  
+		COMMIT;  
+	END IF; 
+select result; 
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `UpdateAlbumName` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -390,4 +431,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-03  0:32:01
+-- Dump completed on 2017-02-07 17:54:24
