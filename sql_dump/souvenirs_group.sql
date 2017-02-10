@@ -41,9 +41,7 @@ CREATE TABLE `group` (
 
 LOCK TABLES `group` WRITE;
 /*!40000 ALTER TABLE `group` DISABLE KEYS */;
-INSERT INTO `group` VALUES ('000000001','Alice\'s Group','This is Alice&apos;s Group','Shared_Album_from_Alice&apos;s Group','\\\\res\\\\default_cover.png','2016-12-15 10:10:12');
-INSERT INTO `group` VALUES ('000000002','Classmate','2016 computer major','Shared_Album_from_Classmate','\\\\group\\\\000000002_cover.jpg','2016-12-15 10:10:12');
-INSERT INTO `group` VALUES ('000000003','Sample','Sample Group','Shared_Album_from_Sample','\\\\res\\\\default_cover.png','2016-12-15 10:10:12');
+INSERT INTO `group` VALUES ('000000001','Alice\'s Group','This is Alice&apos;s Group','Shared_Album_from_Alice&apos;s Group','\\\\res\\\\default_cover.png','2016-12-15 10:10:12'),('000000002','Classmate','2016 computer major','Shared_Album_from_Classmate','\\\\group\\\\000000002_cover.jpg','2016-12-15 10:10:12'),('000000003','Sample','Sample Group','Shared_Album_from_Sample','\\\\res\\\\default_cover.png','2016-12-15 10:10:12');
 /*!40000 ALTER TABLE `group` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -76,4 +74,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-07 17:54:22
+-- Dump completed on 2017-02-10 18:01:44

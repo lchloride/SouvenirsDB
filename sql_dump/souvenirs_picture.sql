@@ -42,17 +42,7 @@ CREATE TABLE `picture` (
 
 LOCK TABLES `picture` WRITE;
 /*!40000 ALTER TABLE `picture` DISABLE KEYS */;
-INSERT INTO `picture` VALUES ('#00000001','daily life','cover.jpg','jpg','','2016-12-05 16:42:17');
-INSERT INTO `picture` VALUES ('#00000001','daily life','party.jpg','jpg','Nice tour','2016-12-05 16:36:08');
-INSERT INTO `picture` VALUES ('#00000001','daily life','tour.jpg','jpg','Tour to beach','2016-12-05 16:35:17');
-INSERT INTO `picture` VALUES ('#00000001','del_test','1.jpg','jpg','example1','2017-02-03 00:30:14');
-INSERT INTO `picture` VALUES ('#00000001','del_test','2.jpg','jpg','example2','2017-02-03 00:30:15');
-INSERT INTO `picture` VALUES ('#00000002','user','avatar.jpg','jpg','This is your profile picture.','2016-12-05 15:57:02');
-INSERT INTO `picture` VALUES ('#00000003','study','oso.jpg','jpg','','2016-12-05 16:37:57');
-INSERT INTO `picture` VALUES ('#00000003','study','website.jpg','jpg','Souvenirs Website','2016-12-05 16:38:38');
-INSERT INTO `picture` VALUES ('#00000003','tour','golden gate bridge.jpg','jpg','','2016-12-05 16:39:06');
-INSERT INTO `picture` VALUES ('#00000003','tour','night sakura.jpg','jpg','Sakara blooms at Sumidagawa, Tokyo','2016-12-05 16:41:12');
-INSERT INTO `picture` VALUES ('#00000003','user','logo.png','png','This is your profile picture.','2016-12-05 15:57:47');
+INSERT INTO `picture` VALUES ('#00000001','daily life','cover.jpg','jpg','cover','2016-12-05 16:42:17'),('#00000001','daily life','party.jpg','jpg','Nice tour','2016-12-05 16:36:08'),('#00000001','daily life','tour.jpg','jpg','Tour to beach','2016-12-05 16:35:17'),('#00000001','del_test','1.jpg','jpg','example1','2017-02-03 00:30:14'),('#00000001','del_test','2.jpg','jpg','example2','2017-02-03 00:30:15'),('#00000002','user','avatar.jpg','jpg','This is your profile picture.','2016-12-05 15:57:02'),('#00000003','study','oso.jpg','jpg','','2016-12-05 16:37:57'),('#00000003','study','website.jpg','jpg','Souvenirs Website','2016-12-05 16:38:38'),('#00000003','tour','golden gate bridge.jpg','jpg','','2016-12-05 16:39:06'),('#00000003','tour','night sakura.jpg','jpg','Sakara blooms at Sumidagawa, Tokyo','2016-12-05 16:41:12'),('#00000003','user','logo.png','png','This is your profile picture.','2016-12-05 15:57:47');
 /*!40000 ALTER TABLE `picture` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -65,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-07 17:54:23
+-- Dump completed on 2017-02-10 18:01:44
