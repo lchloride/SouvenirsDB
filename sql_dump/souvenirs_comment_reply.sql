@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -43,7 +43,9 @@ CREATE TABLE `comment_reply` (
 
 LOCK TABLES `comment_reply` WRITE;
 /*!40000 ALTER TABLE `comment_reply` DISABLE KEYS */;
-INSERT INTO `comment_reply` VALUES ('#00000001','daily life','tour.jpg',1,3),('#00000001','del_test','1.jpg',1,2);
+INSERT INTO `comment_reply` VALUES ('#00000001','daily life','tour.jpg',1,3);
+INSERT INTO `comment_reply` VALUES ('#00000001','daily life','tour.jpg',1,5);
+INSERT INTO `comment_reply` VALUES ('#00000001','del_test','1.jpg',1,2);
 /*!40000 ALTER TABLE `comment_reply` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-10 18:01:45
+-- Dump completed on 2017-02-13  0:05:55

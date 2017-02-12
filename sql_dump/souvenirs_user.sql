@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -40,7 +40,9 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('#00000001','Alice','123456','\\\\res\\\\default_avatar.png','2016-12-15 09:55:28'),('#00000002','Bob','000000','\\\\#00000002\\\\user\\\\avatar.jpg','2016-12-15 09:55:28'),('#00000003','Xiaoming','111111','\\\\#00000003\\\\user\\\\logo.png','2016-12-15 09:55:28');
+INSERT INTO `user` VALUES ('#00000001','Alice','123456','\\\\res\\\\default_avatar.png','2016-12-15 09:55:28');
+INSERT INTO `user` VALUES ('#00000002','Bob','000000','\\\\#00000002\\\\user\\\\avatar.jpg','2016-12-15 09:55:28');
+INSERT INTO `user` VALUES ('#00000003','Xiaoming','111111','\\\\#00000003\\\\user\\\\logo.png','2016-12-15 09:55:28');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -73,4 +75,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-10 18:01:45
+-- Dump completed on 2017-02-13  0:05:57

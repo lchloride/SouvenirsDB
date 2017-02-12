@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -40,7 +40,12 @@ CREATE TABLE `user_belong_group` (
 
 LOCK TABLES `user_belong_group` WRITE;
 /*!40000 ALTER TABLE `user_belong_group` DISABLE KEYS */;
-INSERT INTO `user_belong_group` VALUES ('#00000001','000000001'),('#00000002','000000002'),('#00000003','000000002'),('#00000001','000000003'),('#00000002','000000003'),('#00000003','000000003');
+INSERT INTO `user_belong_group` VALUES ('#00000001','000000001');
+INSERT INTO `user_belong_group` VALUES ('#00000002','000000002');
+INSERT INTO `user_belong_group` VALUES ('#00000003','000000002');
+INSERT INTO `user_belong_group` VALUES ('#00000001','000000003');
+INSERT INTO `user_belong_group` VALUES ('#00000002','000000003');
+INSERT INTO `user_belong_group` VALUES ('#00000003','000000003');
 /*!40000 ALTER TABLE `user_belong_group` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-10 18:01:45
+-- Dump completed on 2017-02-13  0:05:56

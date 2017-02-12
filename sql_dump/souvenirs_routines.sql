@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -61,12 +61,13 @@ SET character_set_client = utf8;
 /*!50001 CREATE VIEW `query_comment_and _reply` AS SELECT 
  1 AS `user_id`,
  1 AS `album_name`,
- 1 AS `picture_name`,
+ 1 AS `filename`,
+ 1 AS `comment_id`,
  1 AS `comment_user_id`,
- 1 AS `comment_content`,
+ 1 AS `comment`,
+ 1 AS `is_valid`,
  1 AS `time`,
- 1 AS `reply_user_id`,
- 1 AS `reply_content`*/;
+ 1 AS `replied_comment_id`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -137,7 +138,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `query_comment_and _reply` AS select `a`.`user_id` AS `user_id`,`a`.`album_name` AS `album_name`,`a`.`filename` AS `picture_name`,`a`.`comment_user_id` AS `comment_user_id`,`a`.`comment` AS `comment_content`,`a`.`create_timestamp` AS `time`,`c`.`comment_user_id` AS `reply_user_id`,`c`.`comment` AS `reply_content` from ((`comment` `a` left join `comment_reply` `b` on(((`a`.`user_id` = `b`.`owner_user_id`) and (`a`.`album_name` = `b`.`album_name`) and (`a`.`filename` = `b`.`filename`) and (`a`.`comment_id_in_pic` = `b`.`reply_id_in_pic`) and (`a`.`is_valid` = 1)))) left join `comment` `c` on(((`b`.`owner_user_id` = `c`.`user_id`) and (`b`.`album_name` = `c`.`album_name`) and (`b`.`filename` = `c`.`filename`) and (`b`.`comment_id_in_pic` = `c`.`comment_id_in_pic`)))) */;
+/*!50001 VIEW `query_comment_and _reply` AS select `comment`.`user_id` AS `user_id`,`comment`.`album_name` AS `album_name`,`comment`.`filename` AS `filename`,`comment`.`comment_id_in_pic` AS `comment_id`,`comment`.`comment_user_id` AS `comment_user_id`,`comment`.`comment` AS `comment`,`comment`.`is_valid` AS `is_valid`,`comment`.`create_timestamp` AS `time`,`comment_reply`.`comment_id_in_pic` AS `replied_comment_id` from (`comment` left join `comment_reply` on(((`comment`.`user_id` = `comment_reply`.`owner_user_id`) and (`comment`.`album_name` = `comment_reply`.`album_name`) and (`comment`.`filename` = `comment_reply`.`filename`) and (`comment`.`comment_id_in_pic` = `comment_reply`.`reply_id_in_pic`)))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -167,6 +168,52 @@ SET character_set_client = @saved_cs_client;
 --
 -- Dumping routines for database 'souvenirs'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `AddComment` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddComment`(IN uid varchar(9), IN an varchar(60), In fn varchar(70), 
+	In cuid varchar(9), in c varchar(200), in rid int)
+BEGIN
+    DECLARE result INTEGER DEFAULT 1;  
+	declare x integer default 0;
+
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET result=0;  
+
+    
+	START TRANSACTION;
+	select count(*) into x from comment where user_id = uid and album_name = an and filename = fn;
+    
+    INSERT INTO 
+    `souvenirs`.`comment`(`user_id`, 
+    `album_name`,	
+    `filename`, 
+    `comment_id_in_pic`,
+    `comment_user_id`,
+	`comment`) 
+    VALUES (uid, an, fn, x+1, cuid, c);
+    
+    if rid > 0 then
+		insert into comment_reply values(uid, an, fn, CONVERT(rid,signed), x+1);
+    end if;
+    IF result = 0 THEN  
+		ROLLBACK;  
+	ELSE  
+		COMMIT;  
+	END IF; 
+select result; 	
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `AddGroup` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -529,4 +576,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-10 18:01:46
+-- Dump completed on 2017-02-13  0:05:58

@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -41,7 +41,13 @@ CREATE TABLE `album` (
 
 LOCK TABLES `album` WRITE;
 /*!40000 ALTER TABLE `album` DISABLE KEYS */;
-INSERT INTO `album` VALUES ('#00000001','daily life','Pictures in daily life.','\\\\#00000001\\\\daily life\\\\cover.jpg','2016-12-15 09:58:06'),('#00000001','del_test','album for delete test','\\res\\default_cover.png','2017-02-03 00:30:14'),('#00000001','user','This is a default album.','\\\\res\\\\default_cover.png','2016-12-15 09:58:06'),('#00000002','user','This is a default album.','\\\\#00000002\\\\user\\\\avatar.jpg','2016-12-15 09:58:06'),('#00000003','study','','\\\\#00000003\\\\study\\\\oso.jpg','2016-12-15 09:58:06'),('#00000003','tour','nice scenary','\\\\#00000003\\\\tour\\\\golden gate bridge.jpg','2016-12-15 09:58:06'),('#00000003','user','This is a default album.','\\\\#00000003\\\\user\\\\logo.png','2016-12-15 09:58:06');
+INSERT INTO `album` VALUES ('#00000001','daily life','Pictures in daily life.','\\\\#00000001\\\\daily life\\\\cover.jpg','2016-12-15 09:58:06');
+INSERT INTO `album` VALUES ('#00000001','del_test','album for delete test','\\res\\default_cover.png','2017-02-03 00:30:14');
+INSERT INTO `album` VALUES ('#00000001','user','This is a default album.','\\\\res\\\\default_cover.png','2016-12-15 09:58:06');
+INSERT INTO `album` VALUES ('#00000002','user','This is a default album.','\\\\#00000002\\\\user\\\\avatar.jpg','2016-12-15 09:58:06');
+INSERT INTO `album` VALUES ('#00000003','study','','\\\\#00000003\\\\study\\\\oso.jpg','2016-12-15 09:58:06');
+INSERT INTO `album` VALUES ('#00000003','tour','nice scenary','\\\\#00000003\\\\tour\\\\golden gate bridge.jpg','2016-12-15 09:58:06');
+INSERT INTO `album` VALUES ('#00000003','user','This is a default album.','\\\\#00000003\\\\user\\\\logo.png','2016-12-15 09:58:06');
 /*!40000 ALTER TABLE `album` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-10 18:01:44
+-- Dump completed on 2017-02-13  0:05:54
