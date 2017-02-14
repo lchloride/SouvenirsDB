@@ -46,9 +46,9 @@ INSERT INTO `salbum_own_picture` VALUES ('000000001','#00000001','daily life','c
 INSERT INTO `salbum_own_picture` VALUES ('000000003','#00000001','daily life','cover.jpg');
 INSERT INTO `salbum_own_picture` VALUES ('000000001','#00000001','daily life','party.jpg');
 INSERT INTO `salbum_own_picture` VALUES ('000000001','#00000001','daily life','tour.jpg');
-INSERT INTO `salbum_own_picture` VALUES ('000000003','#00000001','daily life','tour.jpg');
 INSERT INTO `salbum_own_picture` VALUES ('000000001','#00000001','del_test','1.jpg');
 INSERT INTO `salbum_own_picture` VALUES ('000000003','#00000001','del_test','1.jpg');
+INSERT INTO `salbum_own_picture` VALUES ('000000001','#00000001','del_test','2.jpg');
 INSERT INTO `salbum_own_picture` VALUES ('000000003','#00000001','del_test','2.jpg');
 INSERT INTO `salbum_own_picture` VALUES ('000000002','#00000003','study','oso.jpg');
 INSERT INTO `salbum_own_picture` VALUES ('000000003','#00000003','tour','golden gate bridge.jpg');
@@ -65,4 +65,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-13  0:05:57
+-- Dump completed on 2017-02-15  0:24:43

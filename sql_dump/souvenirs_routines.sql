@@ -371,6 +371,41 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ReportComment` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ReportComment`(IN ruid varchar(9), IN puid varchar(9), IN an varchar(9), 
+	IN pn varchar(9), IN cid varchar(9), IN rl varchar(50), IN rc varchar(300))
+BEGIN
+    DECLARE result INTEGER DEFAULT 1;  
+	declare x integer default 0;
+    declare original_cover varchar(200);
+    declare test_cover varchar(200);
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET result=0;  
+
+    
+	START TRANSACTION;
+    insert into comment_report(report_user_id, picture_user_id, album_name, picture_name, comment_id, report_label, report_content) 
+		values(ruid, puid, an, pn, convert(cid, signed), rl, rc);
+	IF result = 0 THEN  
+		ROLLBACK;  
+	ELSE  
+		COMMIT;  
+	END IF; 
+select result;    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sharePicture` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -576,4 +611,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-13  0:05:58
+-- Dump completed on 2017-02-15  0:24:44

@@ -45,6 +45,7 @@ LOCK TABLES `comment_reply` WRITE;
 /*!40000 ALTER TABLE `comment_reply` DISABLE KEYS */;
 INSERT INTO `comment_reply` VALUES ('#00000001','daily life','tour.jpg',1,3);
 INSERT INTO `comment_reply` VALUES ('#00000001','daily life','tour.jpg',1,5);
+INSERT INTO `comment_reply` VALUES ('#00000001','daily life','tour.jpg',2,7);
 INSERT INTO `comment_reply` VALUES ('#00000001','del_test','1.jpg',1,2);
 /*!40000 ALTER TABLE `comment_reply` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -58,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-13  0:05:55
+-- Dump completed on 2017-02-15  0:24:42

@@ -51,6 +51,9 @@ INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg',2,'#00000002',
 INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg',3,'#00000001','At Beidaihe, Hebei Province.',1,'2016-12-25 23:40:00');
 INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg',4,'#00000001','test',1,'2017-02-12 20:30:52');
 INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg',5,'#00000001','test2',1,'2017-02-12 23:00:08');
+INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg',6,'#00000001','fgjlksajglak',1,'2017-02-13 16:15:15');
+INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg',7,'#00000001','7489279813479',1,'2017-02-13 16:15:29');
+INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg',8,'#00000001','7489279813479',1,'2017-02-13 16:18:38');
 INSERT INTO `comment` VALUES ('#00000001','del_test','1.jpg',1,'#00000002','wonderful',1,'2017-02-03 00:30:15');
 INSERT INTO `comment` VALUES ('#00000001','del_test','1.jpg',2,'#00000001','right',1,'2017-02-03 00:30:15');
 INSERT INTO `comment` VALUES ('#00000001','del_test','1.jpg',3,'#00000002','???',1,'2017-02-12 23:08:20');
@@ -66,4 +69,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-13  0:05:56
+-- Dump completed on 2017-02-15  0:24:42
