@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -46,6 +46,11 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
+INSERT INTO `comment` VALUES ('#00000001','daily life','party.jpg',1,'#00000001','中文乱码吗？',1,'2017-02-19 23:14:22');
+INSERT INTO `comment` VALUES ('#00000001','daily life','party.jpg',2,'#00000001','那样就乱码',1,'2017-02-19 23:17:35');
+INSERT INTO `comment` VALUES ('#00000001','daily life','party.jpg',3,'#00000001','乱码',1,'2017-02-19 23:19:07');
+INSERT INTO `comment` VALUES ('#00000001','daily life','party.jpg',4,'#00000001','方法',1,'2017-02-19 23:19:51');
+INSERT INTO `comment` VALUES ('#00000001','daily life','party.jpg',5,'#00000001','方法',1,'2017-02-19 23:21:41');
 INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg',1,'#00000003','Where is it?',1,'2016-12-21 21:28:03');
 INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg',2,'#00000002','Nice tour!',1,'2016-12-25 23:38:44');
 INSERT INTO `comment` VALUES ('#00000001','daily life','tour.jpg',3,'#00000001','At Beidaihe, Hebei Province.',1,'2016-12-25 23:40:00');
@@ -69,4 +74,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-15 15:26:47
+-- Dump completed on 2017-02-20  0:22:02
