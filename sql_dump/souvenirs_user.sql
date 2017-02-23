@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -30,6 +30,8 @@ CREATE TABLE `user` (
   `password` varchar(60) COLLATE utf8_bin NOT NULL,
   `avatar` varchar(260) COLLATE utf8_bin NOT NULL DEFAULT '\\\\res\\\\default_avatar.png',
   `create_timestamp` datetime DEFAULT CURRENT_TIMESTAMP,
+  `reload_times_max` int(11) NOT NULL DEFAULT '3',
+  `load_timeout` int(11) NOT NULL DEFAULT '5',
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -40,9 +42,9 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('#00000001','Alice','123456','\\\\res\\\\default_avatar.png','2016-12-15 09:55:28');
-INSERT INTO `user` VALUES ('#00000002','Bob','000000','\\\\#00000002\\\\user\\\\avatar.jpg','2016-12-15 09:55:28');
-INSERT INTO `user` VALUES ('#00000003','Xiaoming','111111','\\\\#00000003\\\\user\\\\logo.png','2016-12-15 09:55:28');
+INSERT INTO `user` VALUES ('#00000001','Alice','123456','\\\\res\\\\default_avatar.png','2016-12-15 09:55:28',100,10);
+INSERT INTO `user` VALUES ('#00000002','Bob','000000','\\\\#00000002\\\\user\\\\avatar.jpg','2016-12-15 09:55:28',3,5);
+INSERT INTO `user` VALUES ('#00000003','Xiaoming','111111','\\\\#00000003\\\\user\\\\logo.png','2016-12-15 09:55:28',3,5);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -75,4 +77,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-20  0:22:03
+-- Dump completed on 2017-02-23 18:00:21

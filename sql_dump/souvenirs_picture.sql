@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -42,7 +42,9 @@ CREATE TABLE `picture` (
 
 LOCK TABLES `picture` WRITE;
 /*!40000 ALTER TABLE `picture` DISABLE KEYS */;
-INSERT INTO `picture` VALUES ('#00000001','000000001','24色相图.png','png','','2017-02-19 23:05:03');
+INSERT INTO `picture` VALUES ('#00000001','000000001','24色相图.png','png','24','2017-02-19 23:05:03');
+INSERT INTO `picture` VALUES ('#00000001','000000001','由莉婷-文学院--黄昏.jpg','jpg','','2017-02-20 15:23:14');
+INSERT INTO `picture` VALUES ('#00000001','1','肖冬 生命科学学院 .JPG','JPG','This is the cover of album.','2017-02-20 16:37:30');
 INSERT INTO `picture` VALUES ('#00000001','daily life','cover.jpg','jpg','cover','2016-12-05 16:42:17');
 INSERT INTO `picture` VALUES ('#00000001','daily life','party.jpg','jpg','Nice tour','2016-12-05 16:36:08');
 INSERT INTO `picture` VALUES ('#00000001','daily life','tour.jpg','jpg','Tour to beach','2016-12-05 16:35:17');
@@ -66,4 +68,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-20  0:22:01
+-- Dump completed on 2017-02-23 18:00:20
