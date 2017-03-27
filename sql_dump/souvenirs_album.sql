@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -41,13 +41,7 @@ CREATE TABLE `album` (
 
 LOCK TABLES `album` WRITE;
 /*!40000 ALTER TABLE `album` DISABLE KEYS */;
-INSERT INTO `album` VALUES ('#00000001','000000001','test','\\\\res\\\\default_cover.png','2017-02-19 21:34:07');
-INSERT INTO `album` VALUES ('#00000001','1','','\\\\#00000001\\\\1\\\\肖冬 生命科学学院 .JPG','2017-02-20 16:37:30');
-INSERT INTO `album` VALUES ('#00000001','2','','\\\\\\\\res\\\\\\\\default_cover.png','2017-02-20 17:16:24');
-INSERT INTO `album` VALUES ('#00000001','3','','\\\\\\\\res\\\\\\\\default_cover.png','2017-02-20 17:26:21');
-INSERT INTO `album` VALUES ('#00000001','4','','\\\\\\\\res\\\\\\\\default_cover.png','2017-02-20 17:28:29');
 INSERT INTO `album` VALUES ('#00000001','daily life','Pictures in daily life.','\\\\#00000001\\\\daily life\\\\cover.jpg','2016-12-15 09:58:06');
-INSERT INTO `album` VALUES ('#00000001','del_test','album for delete test','\\\\res\\\\default_cover.png','2017-02-03 00:30:14');
 INSERT INTO `album` VALUES ('#00000001','user','This is a default album.','\\\\res\\\\default_cover.png','2016-12-15 09:58:06');
 INSERT INTO `album` VALUES ('#00000002','user','This is a default album.','\\\\#00000002\\\\user\\\\avatar.jpg','2016-12-15 09:58:06');
 INSERT INTO `album` VALUES ('#00000003','study','','\\\\#00000003\\\\study\\\\oso.jpg','2016-12-15 09:58:06');
@@ -65,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-23 18:00:20
+-- Dump completed on 2017-03-27 20:25:56

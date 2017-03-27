@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -46,10 +46,6 @@ INSERT INTO `salbum_own_picture` VALUES ('000000001','#00000001','daily life','c
 INSERT INTO `salbum_own_picture` VALUES ('000000003','#00000001','daily life','cover.jpg');
 INSERT INTO `salbum_own_picture` VALUES ('000000001','#00000001','daily life','party.jpg');
 INSERT INTO `salbum_own_picture` VALUES ('000000001','#00000001','daily life','tour.jpg');
-INSERT INTO `salbum_own_picture` VALUES ('000000001','#00000001','del_test','1.jpg');
-INSERT INTO `salbum_own_picture` VALUES ('000000003','#00000001','del_test','1.jpg');
-INSERT INTO `salbum_own_picture` VALUES ('000000001','#00000001','del_test','2.jpg');
-INSERT INTO `salbum_own_picture` VALUES ('000000003','#00000001','del_test','2.jpg');
 INSERT INTO `salbum_own_picture` VALUES ('000000002','#00000003','study','oso.jpg');
 INSERT INTO `salbum_own_picture` VALUES ('000000003','#00000003','tour','golden gate bridge.jpg');
 INSERT INTO `salbum_own_picture` VALUES ('000000003','#00000003','tour','night sakura.jpg');
@@ -65,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-23 18:00:21
+-- Dump completed on 2017-03-27 20:25:58

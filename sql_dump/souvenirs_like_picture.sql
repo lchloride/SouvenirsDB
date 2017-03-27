@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -46,9 +46,6 @@ LOCK TABLES `like_picture` WRITE;
 INSERT INTO `like_picture` VALUES ('#00000001','daily life','cover.jpg','#00000001','2017-02-10 23:00:46');
 INSERT INTO `like_picture` VALUES ('#00000001','daily life','cover.jpg','#00000003','2017-02-10 22:23:27');
 INSERT INTO `like_picture` VALUES ('#00000001','daily life','tour.jpg','#00000002','2017-01-19 14:55:11');
-INSERT INTO `like_picture` VALUES ('#00000001','del_test','1.jpg','#00000001','2017-02-03 00:30:15');
-INSERT INTO `like_picture` VALUES ('#00000001','del_test','1.jpg','#00000002','2017-02-03 00:30:15');
-INSERT INTO `like_picture` VALUES ('#00000001','del_test','2.jpg','#00000003','2017-02-03 00:30:15');
 /*!40000 ALTER TABLE `like_picture` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-23 18:00:21
+-- Dump completed on 2017-03-27 20:25:56

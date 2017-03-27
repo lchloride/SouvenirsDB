@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `souvenirs` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `souvenirs`;
--- MySQL dump 10.13  Distrib 5.6.24, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: souvenirs
 -- ------------------------------------------------------
@@ -45,7 +45,7 @@ CREATE TABLE `comment_report` (
   CONSTRAINT `CReport_COMMENT` FOREIGN KEY (`picture_user_id`, `album_name`, `picture_name`, `comment_id`) REFERENCES `comment` (`user_id`, `album_name`, `filename`, `comment_id_in_pic`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `CReport_USER` FOREIGN KEY (`report_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `CReport_user2` FOREIGN KEY (`solver_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -54,8 +54,6 @@ CREATE TABLE `comment_report` (
 
 LOCK TABLES `comment_report` WRITE;
 /*!40000 ALTER TABLE `comment_report` DISABLE KEYS */;
-INSERT INTO `comment_report` VALUES (2,'#00000001','#00000001','daily life','tour.jpg',1,'HARSSMENT','','2017-02-14 11:36:35',0,NULL,NULL,'2017-02-14 11:36:35');
-INSERT INTO `comment_report` VALUES (3,'#00000001','#00000001','daily life','tour.jpg',1,'HARSSMENT','','2017-02-14 11:37:13',0,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `comment_report` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -68,4 +66,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-23 18:00:20
+-- Dump completed on 2017-03-27 20:25:57
